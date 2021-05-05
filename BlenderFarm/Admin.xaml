@@ -1,0 +1,143 @@
+<Page x:Class="BlenderTake2.Admin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BlenderTake2"
+      mc:Ignorable="d" 
+      d:DesignHeight="540" d:DesignWidth="960"
+      Title="Admin">
+
+    <Grid>
+        <Rectangle VerticalAlignment="Top" Width="960" Height="72" Fill="Gray"/>
+        <TextBlock Text="Blender Farm" VerticalAlignment="Top" FontFamily="Montserrat" FontSize="22"
+                Foreground="White" Margin="36,23,97,0"/>
+
+        <Button x:Name="jobstatusbtn" Content="Job Status"
+                Click="jobstatusbtn_Click" 
+                Margin="269,0,97,0" Width="164" Height="72"
+                HorizontalAlignment="Left" VerticalAlignment="Top"
+                Foreground="White" Background="Transparent" FontFamily="Microsoft PhagsPa" FontSize="15">
+        </Button>
+        <Button x:Name="submitjobbtn" Content="Submit Job"
+                Click="submitjobbtn_Click" 
+                Margin="441,0,97,0" Width="164" Height="72"
+                HorizontalAlignment="Left" VerticalAlignment="Top"
+                Foreground="White" Background="Transparent" FontFamily="Microsoft PhagsPa" FontSize="15">
+        </Button>
+        <Button x:Name="adminpagebtn" Content="Admin Page"
+                Click="adminpagebtn_Click" 
+                Margin="613,0,97,0" Width="164" Height="72"
+                HorizontalAlignment="Left" VerticalAlignment="Top"
+                Foreground="White" Background="Black" FontFamily="Microsoft PhagsPa" FontSize="15">
+        </Button>
+        <Button x:Name="logoutbtn" Content="LOG OUT"
+                Click="logoutbtn_Click" 
+                Margin="806,17,0,0" Width="116" Height="39"
+                HorizontalAlignment="Left" VerticalAlignment="Top"
+                Foreground="White" Background="Black" FontFamily="Microsoft PhagsPa" FontSize="12">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="72"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="97"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="hello" x:Name="testtextblock" Margin="10,0"/>
+            <ScrollViewer Grid.Column="1" Grid.Row="1">
+                <StackPanel Grid.Column="1" Margin="0,0,97,40">
+                    <StackPanel>
+                        <ItemsControl x:Name="ViewUsers" ItemsSource="{Binding}"  HorizontalAlignment="Center">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type local:Job}">
+                                    <Border Margin="5,30,5,0" Width="233" Height="143" Background="#f6f6f6">
+                                        <Grid>
+                                            <TextBlock Margin="16,12" VerticalAlignment="Top" FontSize="8" FontFamily="Microsoft PhagsPa">
+                                                <Bold>ID:</Bold>
+                                            </TextBlock>
+                                            <TextBlock Margin="31,12,16,0" VerticalAlignment="Top" Text="{Binding ID, StringFormat={}{0}}" FontSize="8" FontFamily="Microsoft PhagsPa"/>
+                                            <TextBlock Margin="73,12,16,0" VerticalAlignment="Top" FontSize="8" FontFamily="Microsoft PhagsPa">
+                                                <Bold>Email:</Bold>
+                                            </TextBlock>
+                                            <TextBlock Margin="101,12,16,0" Text="{Binding Email}" FontSize="8" FontFamily="Microsoft PhagsPa"/>
+                                            <TextBlock Margin="16,29,16,0" VerticalAlignment="Top" FontSize="8" FontFamily="Microsoft PhagsPa">
+                                                <Bold>Preferred:</Bold>
+                                            </TextBlock>
+                                            <TextBlock Margin="57,29,16,0" Text="{Binding Preferred}" FontSize="8" FontFamily="Microsoft PhagsPa"/>
+                                            <TextBlock Margin="93,29,16,0" VerticalAlignment="Top" FontSize="8" FontFamily="Microsoft PhagsPa">
+                                                <Bold>Admin:</Bold>
+                                            </TextBlock>
+                                            <TextBlock Margin="125,29,16,0" Text="{Binding Admin}" FontSize="8" FontFamily="Microsoft PhagsPa"/>
+                                            
+                                            <Button x:Name="normalbtn" Content="MAKE NORMAL"
+                                                Click="normalbtn_Click" 
+                                                Tag="{Binding}"
+                                                Margin="16,48,0,0" Width="78" Height="19"
+                                                HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                Foreground="White" Background="Black" FontFamily="Microsoft PhagsPa" FontSize="7">
+                                                <Button.Resources>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="CornerRadius" Value="10"/>
+                                                    </Style>
+                                                </Button.Resources>
+                                            </Button>
+                                            <Button x:Name="preferredbtn" Content="MAKE PREFERRED"
+                                                Click="preferredbtn_Click" 
+                                                Tag="{Binding}"
+                                                Margin="16,78,0,0" Width="78" Height="19"
+                                                HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                Foreground="White" Background="Black" FontFamily="Microsoft PhagsPa" FontSize="7">
+                                                <Button.Resources>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="CornerRadius" Value="10"/>
+                                                    </Style>
+                                                </Button.Resources>
+                                            </Button>
+                                            <Button x:Name="adminbtn" Content="MAKE ADMIN"
+                                                Click="adminbtn_Click" 
+                                                Tag="{Binding}"
+                                                Margin="16,108,0,0" Width="78" Height="19"
+                                                HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                Foreground="White" Background="Black" FontFamily="Microsoft PhagsPa" FontSize="7">
+                                                <Button.Resources>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="CornerRadius" Value="10"/>
+                                                    </Style>
+                                                </Button.Resources>
+                                            </Button>
+                                            <Button x:Name="deletebtn" Content="DELETE"
+                                                Click="deletebtn_Click" 
+                                                Tag="{Binding}"
+                                                Margin="158,108,0,0" Width="58" Height="19"
+                                                HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                Foreground="White" Background="Red" FontFamily="Microsoft PhagsPa" FontSize="7">
+                                                <Button.Resources>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="CornerRadius" Value="10"/>
+                                                    </Style>
+                                                </Button.Resources>
+                                            </Button>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>

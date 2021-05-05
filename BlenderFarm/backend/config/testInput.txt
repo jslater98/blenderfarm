@@ -1,0 +1,8 @@
+{
+  "reqType": "create_job",
+  "email": "admin@ndsu.edu",
+  "password": "Passw0rd",
+  "startFrame": 1,
+  "endFrame": 527,
+  "title": "Rob the Rectangle" 
+}
